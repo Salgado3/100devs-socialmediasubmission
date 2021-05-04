@@ -4,8 +4,13 @@ const Post = require("../models/Post");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const posts = await Post.find({
+        user: req.user.id
+      });
+      res.render("profile.ejs", {
+        posts: posts,
+        user: req.user
+      });
     } catch (err) {
       console.log(err);
     }
@@ -13,16 +18,23 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       console.log(`feed ${req}`)
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      const posts = await Post.find().sort({
+        createdAt: "desc"
+      }).lean();
+      res.render("feed.ejs", {
+        posts: posts
+      });
     } catch (err) {
-      console.log(err +'feed');
+      console.log(err + 'feed');
     }
   },
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      res.render("post.ejs", {
+        post: post,
+        user: req.user
+      });
     } catch (err) {
       console.log(err);
     }
@@ -48,44 +60,54 @@ module.exports = {
   },
   addComments: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-       $push: { addComments: req.body.newComment },
-        }
-      );
+      await Post.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        $push: {
+          addComments: {
+            theComments: req.body.newComment,
+            userId: req.user.id
+          }
+        },
+      });
       console.log(`comment added ${req.body.newComment}`);
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
-  
-  // deleteComment: async (req, res)=>{
-  //   try{
-  //     console.log(req)
-  //     // await Post.findOneAndUpdate(
-  //     //   { _id: req.params.id },
-  //     //   {
-  //     //  $pull: { addComments: req.params.id },
-  //     //   }
-  //     // );
-  //     // console.log(`comment ${req.params.id} removed`);
-  //     res.redirect(`/post/${req.params.id}`);
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
 
-  // },
+  // Delete the comment where id of post is same as params.id and 
+  // where the userId of the comment is same as req.user.id.
+  // Current error: Deletes ALL the user comments.
+  deleteComment: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        $pull: {
+          addComments: {
+            userId: req.user.id
+
+          }
+        }
+      })
+      console.log(`Req.params is: ${req.body}`)
+      res.redirect(`/post/${req.params.id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  },
 
   likePost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
+      await Post.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        $inc: {
+          likes: 1
+        },
+      });
       console.log("Likes +1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
@@ -95,11 +117,15 @@ module.exports = {
   deletePost: async (req, res) => {
     try {
       // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
+      let post = await Post.findById({
+        _id: req.params.id
+      });
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      await Post.remove({
+        _id: req.params.id
+      });
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {

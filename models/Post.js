@@ -30,10 +30,15 @@ const PostSchema = new mongoose.Schema({
     default: Date.now,
   },
   addComments: {
-    // type: new Schema({ id: String }),
-    type: Array,
+    type: [{
+      theComments: String,
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      }
+    }],
     required: false,
-  }
+  },
 });
 
 module.exports = mongoose.model("Post", PostSchema);
