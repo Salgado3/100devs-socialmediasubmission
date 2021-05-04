@@ -1,8 +1,8 @@
 <%- include('partials/header') -%>
 <div class="container">
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
+    <div class="col-8">
+      <h2 class='row justify-content-center mt-5 montserrat'><%= post.title %></h2>
       <img class="img-fluid" src="<%= post.image%>" />
       <div class="row justify-content-between">
         <form class="col-1" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
@@ -16,11 +16,25 @@
         <%}%>
       </div>
     </div>
-    <div class="col-3 mt-5">
+    <div class='caption titillium'>
       <p><%= post.caption %></p>
       </div>
 
       <!-- Adding comments section-->
+
+
+      <section>
+        <ul class="list-group ">
+          <% for(let i =0; i <post.addComments.length; i++) {%>
+          <li class='list-group-item eachComment montserrat'><%=post.addComments[i].theComments %>
+
+            <% if(post.addComments[i].userId == user.id){ %>
+            <form action="/post/deleteComment/<%= post.id%>?_method=PUT" method="POST" class="col-3">
+              <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button></li>
+          <% } %>
+          <% } %>
+        </ul>
+      </section>
       <div id="respond">
 
         <h3>Leave a Comment</h3>
@@ -30,19 +44,6 @@
           <button type="submit" class="btn btn-primary">Add Comment</button>
         </form>
       </div>
-
-      <section>
-        <ul>
-          <% for(let i =0; i <post.addComments.length; i++) {%>
-          <li><%=post.addComments[i].theComments %>
-
-            <% if(post.addComments[i].userId == user.id){ %>
-            <form action="/post/deleteComment/<%= post.id%>?_method=PUT" method="POST" class="col-3">
-              <button class='deleteComment' type='submit'> Delete</button></li>
-          <% } %>
-          <% } %>
-        </ul>
-      </section>
 
 
       <div class="col-6 mt-5">
