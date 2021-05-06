@@ -21,7 +21,15 @@
       </div>
 
       <!-- Adding comments section-->
+      <div id="respond">
 
+        <h3>Leave a Comment</h3>
+
+        <form action="/post/addComments/<%= post.id %>?_method=PUT" method="POST" class="col-3">
+          <textarea name="newComment" id="comment" rows="10" tabindex="4" required="required"></textarea>
+          <button type="submit" class="btn btn-primary">Add Comment</button>
+        </form>
+      </div>
 
       <section>
         <ul class="list-group ">
@@ -35,15 +43,7 @@
           <% } %>
         </ul>
       </section>
-      <div id="respond">
 
-        <h3>Leave a Comment</h3>
-
-        <form action="/post/addComments/<%= post.id %>?_method=PUT" method="POST" class="col-3">
-          <textarea name="newComment" id="comment" rows="10" tabindex="4" required="required"></textarea>
-          <button type="submit" class="btn btn-primary">Add Comment</button>
-        </form>
-      </div>
 
 
       <div class="col-6 mt-5">
