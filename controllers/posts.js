@@ -84,16 +84,9 @@ module.exports = {
   // where the userId of the comment is same as req.user.id.
   // Current error: Deletes ALL the user comments.
   deleteComment: async (req, res) => {
-    try {
-      
-      await Comment.deleteOne({
-       let posturl = req.params.id,
-        // postId: req.params.postId,
-        _id: req.params.id
-      })
-      console.log(`Req.params is: ${req.params.id}`)
-      // document.location.reload()
-       res.redirect(`/post/${Post.find({id: posturl})}`)
+    try {      
+      await Comment.findOneAndDelete({ _id:req.params.id });
+      res.redirect('back')
     } catch (err) {
       console.log(err)
     }
