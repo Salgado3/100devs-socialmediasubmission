@@ -8,6 +8,21 @@ img {
     vertical-align: middle;
 
 }
+
+#div-login-form{
+  display: flex;
+  justify-content: center;
+
+}
+
+#login-btn{
+  margin-top: 150px;
+
+}
+#signup-btn{
+  height: 24;
+  margin-top: 150px;
+}
 @media (min-width:991px){
   #app-name{
     text-align: left;
@@ -24,7 +39,7 @@ img {
   margin-top: 41px;
   margin-bottom: 41px;
 }
-#footer-feed-return-to-profile-btn{
+#feed-return-to-profile-btn{
   width: 144px;
 }
 

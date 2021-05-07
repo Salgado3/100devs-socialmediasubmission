@@ -38,6 +38,9 @@ module.exports = {
         user: req.user,
         comment : comment
       });
+      console.log(`Commenter: ${comment[0].commenterId}`)
+      console.log(`the url is ${req.originalUrl}`)
+      console.log(`This is current user: ${req.user.userName}`)
     } catch (err) {
       console.log(err);
     }
@@ -66,9 +69,11 @@ module.exports = {
       await Comment.create({
         postId: req.params.id,
         userId: req.user.id,
-        comment: req.body.newComment
+        comment: req.body.newComment,
+        commenterId: req.user.userName
       });  
       console.log(`comment added ${req.body.newComment}`);
+      console.log(`params is: ${req.params}`)
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -80,22 +85,19 @@ module.exports = {
   // Current error: Deletes ALL the user comments.
   deleteComment: async (req, res) => {
     try {
-      await Post.findOneAndUpdate({
+      let x
+      await Comment.deleteOne({
+        x = req.params.id,
+        // postId: req.params.postId,
         _id: req.params.id
-      }, {
-        $pull: {
-          addComments: {
-            userId: req.user.id
-
-          }
-        }
       })
-      console.log(`Req.params is: ${req.body}`)
-      res.redirect(`/post/${req.params.id}`)
+      console.log(`Req.params is: ${req.params.id}`)
+      // document.location.reload()
+       res.redirect(`/post/${Post.find({id: x})}`)
     } catch (err) {
       console.log(err)
     }
-  },
+  },// fix this we need to redirect to the current page 
 
   likePost: async (req, res) => {
     try {

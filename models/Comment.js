@@ -14,6 +14,11 @@ userId:{
   required:true,
 },
 
+commenterId:{
+  type:String,
+  required:true,
+},
+
 //content of comment 
 comment:{
   type:String,

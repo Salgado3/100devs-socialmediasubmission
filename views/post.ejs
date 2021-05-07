@@ -20,18 +20,7 @@
       <p><%= post.caption %></p>
       </div>
 
-      <!-- view comments here --> 
-<section>
-  <ul>
-    <% comment.forEach(element => { %>
-    <li class='list-group-item eachComment montserrat'><%=element.comment%>
-    
-    <% }) %>
-  </ul>
-
-
-
-</section>
+      
 
 
 
@@ -50,6 +39,25 @@
           <button type="submit" class="btn btn-primary">Add Comment</button>
         </form>
       </div>
+<!-- view comments here --> 
+
+      <section>
+  <ul>
+    <% comment.forEach(element => { %>
+    <li class='list-group-item eachComment montserrat'><%=element.comment%>
+    <%if(element.commenterId == user.userName){  %>
+    <form action="/post/deleteComment/<%= element.id %>?_method=DELETE" method="POST" class="col-3">
+              <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button>
+    <% } %>
+    
+    </li>
+    
+    <% }) %>
+  </ul>
+
+
+
+</section>
 
      
 
