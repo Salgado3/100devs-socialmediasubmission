@@ -8,7 +8,38 @@ img {
     vertical-align: middle;
 
 }
+@media (min-width:991px){
+  #app-name{
+    text-align: left;
+  }
 
+}
+#profile-return-to-feed-btn{
+  width: 134px;
+  margin-top: 20px;
+
+}
+
+#feed-heading{
+  margin-top: 41px;
+  margin-bottom: 41px;
+}
+#footer-feed-return-to-profile-btn{
+  width: 144px;
+}
+
+#return-to-feed-btn {
+  margin-right: 5px;
+}
+
+@media (max-width: 991px){
+  #return-to-feed-btn {
+    margin-bottom: 10px;
+  }
+
+
+
+}
 
 #respond {
     margin-top: 40px;

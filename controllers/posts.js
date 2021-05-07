@@ -32,9 +32,11 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
+      const comment = await Comment.find({ postId: req.params.id});
       res.render("post.ejs", {
         post: post,
-        user: req.user
+        user: req.user,
+        comment : comment
       });
     } catch (err) {
       console.log(err);
@@ -65,8 +67,7 @@ module.exports = {
         postId: req.params.id,
         userId: req.user.id,
         comment: req.body.newComment
-      });
-  
+      });  
       console.log(`comment added ${req.body.newComment}`);
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
