@@ -24,7 +24,7 @@ comment:{
   type:String,
   required:true,
 }
-
+//maybe add the url of the post 
 }); 
 
 
