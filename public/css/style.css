@@ -96,3 +96,8 @@ img {
     margin-top: 2em;
     padding-bottom: 1em;
 }
+
+
+.pt-2{
+  padding-top: 2rem !important;
+}
