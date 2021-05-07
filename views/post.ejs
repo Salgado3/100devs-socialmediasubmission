@@ -20,29 +20,28 @@
       <p><%= post.caption %></p>
       </div>
 
-      <!-- Adding comments section-->
+      <!-- view comments here --> 
+
+
+
+
+
+
+
+
+
+<!-- Adding comments section-->
       <div id="respond">
 
         <h3>Leave a Comment</h3>
 
-        <form action="/post/addComments/<%= post.id %>?_method=PUT" method="POST" class="col-3">
+        <form action="/post/addComments/<%= post.id %>" method="POST" class="col-3">
           <textarea name="newComment" id="comment" rows="10" tabindex="4" required="required"></textarea>
           <button type="submit" class="btn btn-primary">Add Comment</button>
         </form>
       </div>
 
-      <section>
-        <ul class="list-group ">
-          <% for(let i =0; i <post.addComments.length; i++) {%>
-          <li class='list-group-item eachComment montserrat'><%=post.addComments[i].theComments %>
-
-            <% if(post.addComments[i].userId == user.id){ %>
-            <form action="/post/deleteComment/<%= post.id%>?_method=PUT" method="POST" class="col-3">
-              <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button></li>
-          <% } %>
-          <% } %>
-        </ul>
-      </section>
+     
 
 
 

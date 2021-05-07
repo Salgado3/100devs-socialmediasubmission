@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Comment = require("../models/Comment");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -60,16 +61,12 @@ module.exports = {
   },
   addComments: async (req, res) => {
     try {
-      await Post.findOneAndUpdate({
-        _id: req.params.id
-      }, {
-        $push: {
-          addComments: {
-            theComments: req.body.newComment,
-            userId: req.user.id
-          }
-        },
+      await Comment.create({
+        postId: req.params.id,
+        userId: req.user.id,
+        comment: req.body.newComment
       });
+  
       console.log(`comment added ${req.body.newComment}`);
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
