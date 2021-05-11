@@ -78,22 +78,20 @@ module.exports = {
         }
     },
 
-    // Delete the comment where id of post is same as params.id and 
-    // where the userId of the comment is same as req.user.id.
-    // Current error: Deletes ALL the user comments.
-    deleteComment: async (req, res) => {
+    // Delete the comment where id is same as params.id finds one in db 
+        deleteComment: async (req, res) => {
         try {
             await Comment.findOneAndDelete({
                 _id: req.params.id,
                 
             });
             console.log('Comment deleted')
-            console.log(req.params.id)
+            console.log(`deleting ${req.params.id}`)
             res.redirect('back')
         } catch (err) {
             console.log(err)
         }
-    }, // fix this we need to redirect to the current page 
+    }, 
 
     likePost: async (req, res) => {
         try {

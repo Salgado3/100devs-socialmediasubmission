@@ -40,22 +40,17 @@
         </form>
       </div>
 <!-- view comments here --> 
-
-  <section>
-  <ul>
-    <% comment.forEach(element => { %>
-    <li class='list-group-item eachComment montserrat'><%=element.comment%>
-    <%if(element.commenterId == user.userName){  %>
-    <form action="/post/deleteComment/<%= element._id %>?_method=DELETE" method="POST" class="col-3">
-              <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button>
-    <% } %>
-    <!--THE ELEMENT.ID THAT IS BEING SENT TO THE DELETECOMMENT ROUTE IS ALWAYS THE ID OF THE FIRST COMMENT OF YOUR USER SOMETHING WRONG WITH LOOP NEED HELP  --> 
-    </li>
-    
-    <% }) %>
-  </ul>
-
-
+<section>
+    <ul>
+        <% for( let i = 0; i < comment.length ; i++ ) { %>
+        <li class='list-group-item eachComment montserrat'><%= comment[i].comment %> <p class="commenter"><%= comment[i].commenterId %></p> 
+            <% if (comment[i].commenterId == user.userName) { %>
+            <form action="/post/deleteComment/<%= comment[i].id %>?_method=DELETE" method="POST" class="col-3">
+                <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button>
+                <% } %>
+        </li>
+        <% } %>
+    </ul>
 
 </section>
 

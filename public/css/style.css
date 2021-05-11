@@ -101,3 +101,9 @@ img {
 .pt-2{
   padding-top: 2rem !important;
 }
+
+.commenter{
+  color:grey;
+  font-size: .8rem;
+  font-style:italic;
+}
