@@ -45,8 +45,8 @@
         <% for( let i = 0; i < comment.length ; i++ ) { %>
         <li class='list-group-item eachComment montserrat'><%= comment[i].comment %> <p class="commenter"><%= comment[i].commenterId %></p> 
             <% if (comment[i].commenterId == user.userName) { %>
-            <form action="/post/deleteComment/<%= comment[i].id %>?_method=DELETE" method="POST" class="col-3">
-                <button class='btn btn-primary fa fa-trash col-xs-2' type='submit'></button>
+            <form action="/post/deleteComment/<%= comment[i]._id %>?_method=DELETE" method="POST" class="col-3">
+                <button class='btn btn-primary fa fa-trash col-xs-2' formaction="/post/deleteComment/<%= comment[i]._id %>?_method=DELETE" type='submit'></button>
                 <% } %>
         </li>
         <% } %>
