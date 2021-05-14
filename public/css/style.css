@@ -1,7 +1,10 @@
 a:link {
-  text-decoration: none
+  text-decoration: none;
 }
+#app-name {
+  color: red;
 
+}
 img {
   width: 100%;
   height: auto;
@@ -12,12 +15,10 @@ img {
 #div-login-form {
   display: flex;
   justify-content: center;
-
 }
 
 #login-btn {
   margin-top: 150px;
-
 }
 
 #signup-btn {
@@ -25,17 +26,16 @@ img {
   margin-top: 150px;
 }
 
-@media (min-width:991px) {
+@media (min-width: 991px) {
+
   #app-name {
     text-align: left;
   }
-
 }
 
 #profile-return-to-feed-btn {
   width: 134px;
   margin-top: 20px;
-
 }
 
 #feed-heading {
@@ -55,17 +55,14 @@ img {
   #return-to-feed-btn {
     margin-bottom: 10px;
   }
-
-
-
 }
 
 #respond {
   margin-top: 40px;
 }
 
-#respond input[type='text'],
-#respond input[type='email'],
+#respond input[type="text"],
+#respond input[type="email"],
 #respond textarea {
   margin-bottom: 10px;
   display: block;
@@ -94,6 +91,7 @@ img {
 
 .titillium {
   font-family: 'Titillium Web', sans-serif;
+
 }
 
 .feed-heading {
@@ -108,6 +106,8 @@ img {
 
 .commenter {
   color: grey;
+
   font-size: .8rem;
   font-style: italic;
 }
+
