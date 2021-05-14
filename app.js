@@ -12,7 +12,12 @@ const postRoutes = require("./routes/posts");
 const PORT = 8000;
 connectDB();
 
-const app = express();
+
+
+connectDB()
+
+const app = express()
+
 
 // Passport config
 require("./config/passport")(passport);
@@ -24,7 +29,9 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //Body Parsing
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 
 //Logging
@@ -39,7 +46,11 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+
   })
 );
 
@@ -52,6 +63,8 @@ app.use("/", mainRoutes); // this is telling the app to use the router file to r
 app.use("/post", postRoutes);
 
 //Server Running
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
+

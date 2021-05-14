@@ -3,11 +3,13 @@ a:link {
 }
 #app-name {
   color: red;
+
 }
 img {
   width: 100%;
   height: auto;
   vertical-align: middle;
+
 }
 
 #div-login-form {
@@ -18,15 +20,19 @@ img {
 #login-btn {
   margin-top: 150px;
 }
+
 #signup-btn {
   height: 24;
   margin-top: 150px;
 }
+
 @media (min-width: 991px) {
+
   #app-name {
     text-align: left;
   }
 }
+
 #profile-return-to-feed-btn {
   width: 134px;
   margin-top: 20px;
@@ -36,6 +42,7 @@ img {
   margin-top: 41px;
   margin-bottom: 41px;
 }
+
 #feed-return-to-profile-btn {
   width: 144px;
 }
@@ -75,14 +82,16 @@ img {
 .caption {
   text-align: center;
   font-size: 2rem;
+
 }
 
 .montserrat {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .titillium {
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
+
 }
 
 .feed-heading {
@@ -90,12 +99,15 @@ img {
   padding-bottom: 1em;
 }
 
+
 .pt-2 {
   padding-top: 2rem !important;
 }
 
 .commenter {
   color: grey;
-  font-size: 0.8rem;
+
+  font-size: .8rem;
   font-style: italic;
 }
+
